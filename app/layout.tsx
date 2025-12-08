@@ -10,7 +10,7 @@ const patrick = Patrick_Hand({
 export default function layout({ children }: { children: ReactNode }) {
     return (
         <html lang="en" className={patrick.className}>
-            <body className="p-20">{children}</body>
+            <body className="p-20 paperBg">{children}</body>
         </html>
     );
 }

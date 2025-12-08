@@ -1,13 +1,45 @@
-import { SVG_OUTLINES } from "@/src/constants";
-import pickRandomFromList from "@/src/utils/pickRandomFromList";
-import Image from "next/image";
+import { SvgOutlineParameters } from "@/src/types/svgs";
+import clsx from "clsx";
+import { ReactNode } from "react";
 
-export default function SvgOutline({ children }: { children: string }) {
-    const { svg, svgClassName } = pickRandomFromList(SVG_OUTLINES);
+function getModeSpecificClassname({
+    modeName,
+    svgData,
+}: {
+    modeName: string;
+    svgData: SvgOutlineParameters;
+}) {
+    if (modeName === "Daily") return svgData.dailyClassName;
+    else if (modeName === "Weekly") return svgData.weeklyClassName;
+    else if (modeName === "Monthly") return svgData.monthlyClassName;
+}
 
+export default function SvgOutline({
+    children,
+    isOutlineVisible,
+    svgData,
+    modeName,
+}: {
+    children: ReactNode;
+    modeName: string;
+    svgData: SvgOutlineParameters | undefined;
+    isOutlineVisible: boolean;
+}) {
     return (
         <div className="flex relative">
-            <Image src={svg} className={svgClassName} alt="selected" />
+            {typeof svgData !== "undefined" && (
+                <svgData.Svg
+                    className={clsx(
+                        "hidden absolute pointer-events-none w-full h-full",
+                        svgData.svgClassName,
+                        getModeSpecificClassname({ modeName, svgData }),
+                        {
+                            "flex!": isOutlineVisible,
+                        },
+                    )}
+                />
+            )}
+
             {children}
         </div>
     );

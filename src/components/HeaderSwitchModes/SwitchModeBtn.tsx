@@ -5,13 +5,14 @@ import {
     timeToWaitFromLastUpdateAtom,
 } from "@/src/jotai/currentMode";
 import { ModeNames, TimeMode } from "@/src/types/timeModes";
-import { useAtomValue } from "jotai";
 import { useAtomCallback } from "jotai/utils";
 import { useCallback } from "react";
 
-export default function SwitchModeBtn({ modeName, cleanTimeMS }: TimeMode) {
-    const currentMode = useAtomValue(currModeSelectedAtom);
-    const isSelected = currentMode === modeName;
+export default function SwitchModeBtn({
+    modeName,
+    cleanTimeMS,
+    isSelected,
+}: TimeMode & { isSelected: boolean }) {
     const updateDataOnClick = useAtomCallback(
         useCallback(
             (get, set) => {
