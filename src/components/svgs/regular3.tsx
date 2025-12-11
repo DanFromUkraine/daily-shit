@@ -11,7 +11,7 @@ export default function Regular3Svg(params: SVGAttributes<SVGSVGElement>) {
             y="0px"
             width="100%"
             viewBox="0 0 1024 512"
-            enable-background="new 0 0 1024 512"
+            enableBackground="new 0 0 1024 512"
             xmlSpace="preserve"
             {...params}
         >

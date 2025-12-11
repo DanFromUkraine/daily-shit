@@ -5,7 +5,7 @@ import { Provider } from "jotai";
 export default function MainPage() {
     return (
         <Provider>
-            <main className="flex flex-col gap-10 h-screen">
+            <main className="flex flex-col gap-30 h-screen">
                 <HeaderSwitchModes />
                 <MainInput />
             </main>

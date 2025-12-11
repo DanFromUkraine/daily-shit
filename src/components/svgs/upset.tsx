@@ -11,7 +11,7 @@ export default function UpsetSvg(params: SVGAttributes<SVGSVGElement>) {
             y="0px"
             width="100%"
             viewBox="0 0 752 496"
-            enable-background="new 0 0 752 496"
+            enableBackground="new 0 0 752 496"
             xmlSpace="preserve"
             {...params}
         >

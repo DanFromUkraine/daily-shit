@@ -1,14 +1,11 @@
 @import "tailwindcss";
 
 .paperBg {
-    background-image: url("/cream-paper-texture.webp");
+    background-image: url("/paperTexture.webp");
     background-repeat: repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
 }
 
 @layer utilities {
-    .scale-by-width {
-        transform: scale(calc(4.31 * (100% + 17px)));
-    }
 }

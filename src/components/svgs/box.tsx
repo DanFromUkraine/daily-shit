@@ -1,16 +1,18 @@
-export default function BoxSvg() {
+import { SVGAttributes } from "react";
+
+export default function BoxSvg(params: SVGAttributes<SVGSVGElement>) {
     return (
         <svg
             version="1.1"
-            id="Layer_1"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             x="0px"
             y="0px"
             width="100%"
             viewBox="0 0 1024 512"
-            enable-background="new 0 0 1024 512"
+            enableBackground="new 0 0 1024 512"
             xmlSpace="preserve"
+            {...params}
         >
             <path
                 fill="#000000"
