@@ -19,15 +19,15 @@ export default function SvgOutline({
     isOutlineVisible,
     svgData,
     modeName,
-}: {
+}: Readonly<{
     children: ReactNode;
     modeName: string;
     svgData: SvgOutlineParameters | undefined;
     isOutlineVisible: boolean;
-}) {
+}>) {
     return (
         <div className="flex relative">
-            {typeof svgData !== "undefined" && (
+            {svgData !== undefined && (
                 <svgData.Svg
                     className={clsx(
                         "hidden absolute pointer-events-none w-full h-full",

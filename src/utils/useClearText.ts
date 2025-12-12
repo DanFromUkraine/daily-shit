@@ -1,12 +1,11 @@
 "use client";
 
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { mainTextAtom } from "../jotai/mainInput";
 import { useEffect } from "react";
 import { currModeSelectedAtom } from "../jotai/currentMode";
 import { lastSessionStartDataLSAtom } from "../jotai/clearLogic";
 import { MODE_AND_TIME_TABLE } from "../constants";
-import { useSetAtom } from "jotai";
 import calcTimeLeft from "./calcTimeLeft";
 
 export default function useClearTextOnTimer() {
