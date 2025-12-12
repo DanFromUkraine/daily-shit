@@ -8,10 +8,10 @@ import { useCallback } from "react";
 export default function SwitchModeBtn({
     modeName,
     isSelected,
-}: {
+}: Readonly<{
     modeName: string;
     isSelected: boolean;
-}) {
+}>) {
     const updateDataOnClick = useAtomCallback(
         useCallback(
             (get, set) => {
