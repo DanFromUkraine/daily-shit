@@ -1,19 +1,19 @@
 "use client";
 
-import { MODES, SVG_OUTLINES } from "@/src/constants";
+import { MODE_NAMES, SVG_OUTLINES } from "@/src/constants";
 import { currModeSelectedAtom } from "@/src/jotai/currentMode";
 import { SvgOutlineParameters } from "@/src/types/svgs";
-import { ModeNames } from "@/src/types/timeModes";
 import pickRandomFromList from "@/src/utils/pickRandomFromList";
 import { useAtomValue } from "jotai";
 import { useLayoutEffect, useState } from "react";
 import SvgOutline from "./svgOutline";
 import SwitchModeBtn from "./SwitchModeBtn";
+import { ModeName } from "@/src/types/modes";
 
 function useGetModeIsSelected() {
     const currentMode = useAtomValue(currModeSelectedAtom);
 
-    return (mode: ModeNames) => mode === currentMode;
+    return (mode: ModeName) => mode === currentMode;
 }
 
 function useGetRandomSvg() {
@@ -33,20 +33,20 @@ export default function HeaderSwitchModes() {
     const svgData = useGetRandomSvg();
     return (
         <header className="w-full flex gap-10 items-center">
-            {MODES.map((mode) => (
+            {MODE_NAMES.map((modeName) => (
                 <SvgOutline
-                    key={mode.modeName}
-                    modeName={mode.modeName}
+                    key={modeName}
+                    modeName={modeName}
                     svgData={svgData}
-                    isOutlineVisible={getIsSelected(mode.modeName)}
+                    isOutlineVisible={getIsSelected(modeName)}
                 >
                     <SwitchModeBtn
-                        {...mode}
-                        isSelected={getIsSelected(mode.modeName)}
+                        modeName={modeName}
+                        isSelected={getIsSelected(modeName)}
                     />
                 </SvgOutline>
             ))}
-            <h1 className="underline text-5xl ">Shit</h1>
+            <h1 className="ml-8 underline text-5xl ">Shit</h1>
         </header>
     );
 }

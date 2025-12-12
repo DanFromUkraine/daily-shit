@@ -17,8 +17,8 @@ export default function MainInput() {
             value={inputText}
             onChange={onInputChange}
             data-testid="main-input"
-            className="w-full h-full outline-none text-xl"
-            placeholder="Here starts your story..."
+            className="w-full h-full outline-none text-2xl"
+            placeholder="Your temporary story starts here..."
         ></textarea>
     );
 }

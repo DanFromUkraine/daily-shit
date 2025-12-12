@@ -1,10 +1,8 @@
 import { atomWithStorage } from "jotai/utils";
-import { MODES } from "../constants";
+import { MODE_NAMES } from "../constants";
+import { ModeName } from "../types/modes";
 
-export const currModeSelectedAtom = atomWithStorage<
-    (typeof MODES)[number]["modeName"]
->("mode-selected", MODES[0].modeName);
-export const timeToWaitFromLastUpdateAtom = atomWithStorage(
-    "time-to-wait",
-    MODES[0].cleanTimeMS,
+export const currModeSelectedAtom = atomWithStorage<ModeName>(
+    "mode-selected",
+    MODE_NAMES[0],
 );
