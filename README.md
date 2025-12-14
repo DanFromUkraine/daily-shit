@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Ephemeral Notes
 
-## Getting Started
+> A digital sheet of paper for your temporary thoughts.
 
-First, run the development server:
+**Ephemeral Notes** is a minimalist, single-page application designed to capture fleeting ideas. It features a nostalgic paper-styled interface with a handwriting font. The core philosophy is impermanence: all notes are automatically erased after a configured period (24 hours, 1 week, or 1 month), giving you a fresh start when you need it.
+
+![Project Preview](https://via.placeholder.com/800x400?text=Paper+UI+Screenshot+Placeholder)
+_(Replace this link with a screenshot of your actual interface)_
+
+## ✨ Features
+
+- **Paper-Like UI:** A clean interface that mimics the look and feel of real paper.
+- **Handwriting Typography:** optimized for readability while maintaining a handwritten aesthetic.
+- **Auto-Expiration:** Notes are temporary by design.
+- **Configurable Lifespan:** Users can set the deletion timer to:
+    - ⏳ 24 Hours
+    - 🗓️ 1 Week
+    - 📅 1 Month
+- **Responsive Design:** Works seamlessly on desktop and mobile.
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (React)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Package Manager:** [pnpm](https://pnpm.io/)
+
+## 🚀 Getting Started
+
+Follow these steps to run the project locally.
+
+### Prerequisites
+
+Make sure you have Node.js installed and `pnpm` enabled:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install -g pnpm
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Clone the repository**:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone [https://github.com/your-username/ephemeral-notes.git](https://github.com/your-username/ephemeral-notes.git)
+cd ephemeral-notes
+```
 
-## Learn More
+- **Install dependencies**:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Run the development server**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+Open your browser: Navigate to http://localhost:3000 to see the app in action.
+```
 
-## Deploy on Vercel
+## 🤝 Contributing
+Contributions are welcome! If you have ideas for new features (like different paper textures or ink colors), feel free to fork the repository and submit a Pull Request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the Project
+2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
+3. Commit your Changes (git commit -m 'Add some AmazingFeature')
+4. Push to the Branch (git push origin feature/AmazingFeature)
+5. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+Distributed under the MIT License. See LICENSE for more information.
