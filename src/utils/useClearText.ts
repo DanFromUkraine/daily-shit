@@ -1,14 +1,19 @@
 "use client";
 
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { mainTextAtom } from "../jotai/mainInput";
+import { useAtom, useSetAtom, WritableAtom } from "jotai";
 import { useEffect, useRef } from "react";
-import { currModeSelectedAtom } from "../jotai/currentMode";
+import { DAY_MS, MONTH_MS, WEEK_MS } from "../constants";
 import {
-    lastSessionStartDataLSAtom,
-    timeLeftMsAtom,
+    lastSessionStartDateLSAtom__Daily,
+    lastSessionStartDateLSAtom__Monthly,
+    lastSessionStartDateLSAtom__Weekly,
 } from "../jotai/clearLogic";
-import { MODE_AND_TIME_TABLE } from "../constants";
+import {
+    clearDailyTextAtom,
+    clearMonthlyTextAtom,
+    clearWeeklyTextAtom,
+} from "../jotai/textAtoms";
+import { currTimeAtom } from "../jotai/timeLeft";
 import calcTimeLeft from "./calcTimeLeft";
 
 function useInterval(callback: () => void, delay: number) {
@@ -31,27 +36,61 @@ function useInterval(callback: () => void, delay: number) {
     }, [delay]);
 }
 
+function getTimeUnitManager({
+    clearFieldAtom,
+    lastSessionAtom,
+    timeUnit,
+}: {
+    clearFieldAtom: WritableAtom<null, [], void>;
+    lastSessionAtom: WritableAtom<number, [number], void>;
+    timeUnit: number;
+}) {
+    return function useGetTimeUnitTick() {
+        const clearText = useSetAtom(clearFieldAtom);
+        const [lastSession, setLastSession] = useAtom(lastSessionAtom);
+
+        return ({ currTime }: { currTime: number }) => {
+            const timeLeft = calcTimeLeft({
+                currTime,
+                roundedTimeToWait: timeUnit,
+                sessionStartTime: lastSession,
+            });
+
+            if (timeLeft < 0) {
+                clearText();
+                setLastSession(currTime);
+            }
+        };
+    };
+}
+
+const useGetDailyNoteManagerTick = getTimeUnitManager({
+    clearFieldAtom: clearDailyTextAtom,
+    lastSessionAtom: lastSessionStartDateLSAtom__Daily,
+    timeUnit: DAY_MS,
+});
+const useGetWeeklyNoteManagerTick = getTimeUnitManager({
+    clearFieldAtom: clearWeeklyTextAtom,
+    lastSessionAtom: lastSessionStartDateLSAtom__Weekly,
+    timeUnit: WEEK_MS,
+});
+const useGetMonthlyNoteManagerTick = getTimeUnitManager({
+    clearFieldAtom: clearMonthlyTextAtom,
+    lastSessionAtom: lastSessionStartDateLSAtom__Monthly,
+    timeUnit: MONTH_MS,
+});
+
 export default function useClearTextOnTimer() {
-    const currentMode = useAtomValue(currModeSelectedAtom);
-    const setTimeLeftMs = useSetAtom(timeLeftMsAtom);
-    const setMainText = useSetAtom(mainTextAtom);
-    const [lastSessionDate, setLastSessionDate] = useAtom(
-        lastSessionStartDataLSAtom,
-    );
+    const dailyTickManager = useGetDailyNoteManagerTick(),
+        weeklyTickManager = useGetWeeklyNoteManagerTick(),
+        monthlyTickManager = useGetMonthlyNoteManagerTick();
+    const upadeCurrTimeGlobal = useSetAtom(currTimeAtom);
 
     useInterval(() => {
         const currTime = Date.now();
-        const timeLeft = calcTimeLeft({
-            currTime,
-            roundedTimeToWait: MODE_AND_TIME_TABLE[currentMode],
-            sessionStartTime: lastSessionDate,
-        });
-
-        setTimeLeftMs(timeLeft);
-
-        if (timeLeft < 0) {
-            setMainText("");
-            setLastSessionDate(currTime);
-        }
+        upadeCurrTimeGlobal(currTime);
+        dailyTickManager({ currTime });
+        weeklyTickManager({ currTime });
+        monthlyTickManager({ currTime });
     }, 1000);
 }

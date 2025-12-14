@@ -1,11 +1,11 @@
 "use client";
 
-import { timeLeftMsAtom } from "@/src/jotai/clearLogic";
+import { timeLeftIndicatorAtom } from "@/src/jotai/timeLeft";
 import getTimeRounded from "@/src/utils/getTimeRounded";
 import { useAtomValue } from "jotai";
 
 export default function TimeLeftIndicator() {
-    const timeLeftMs = useAtomValue(timeLeftMsAtom);
+    const timeLeftMs = useAtomValue(timeLeftIndicatorAtom);
     const roundedTime = getTimeRounded(timeLeftMs);
 
     return (

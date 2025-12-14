@@ -1,28 +1,18 @@
 "use client";
 
-import { mainTextAtom } from "@/src/jotai/mainInput";
-import { useAtom } from "jotai";
-import { ChangeEventHandler, RefObject, useEffect, useRef } from "react";
-
-function useAutosizeTextArea({
-    textAreaRef,
-    _value,
-}: {
-    textAreaRef: RefObject<HTMLTextAreaElement | null>;
-    _value: string;
-}) {
-    useEffect(() => {
-        if (textAreaRef.current) {
-            textAreaRef.current.style.height = "0px";
-            const scrollHeight = textAreaRef.current.scrollHeight;
-            console.log({ scrollHeight });
-            textAreaRef.current.style.height = scrollHeight + "px";
-        }
-    }, [textAreaRef, _value]);
-}
+import { NOTES_DEPENDENCIES } from "@/src/constants";
+import { currModeSelectedAtom } from "@/src/jotai/currentMode";
+import { useAutosizeTextArea } from "@/src/utils/useAutosize";
+import { useAtom, useAtomValue } from "jotai";
+import { ChangeEventHandler, useMemo, useRef } from "react";
 
 export default function MainInput() {
-    const [inputText, setInputText] = useAtom(mainTextAtom);
+    const currentMode = useAtomValue(currModeSelectedAtom);
+    const stableTextAtom = useMemo(
+        () => NOTES_DEPENDENCIES[currentMode],
+        [currentMode],
+    );
+    const [inputText, setInputText] = useAtom(stableTextAtom);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const onInputChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
         setInputText(e.target.value);
