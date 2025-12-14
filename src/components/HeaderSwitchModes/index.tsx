@@ -9,6 +9,7 @@ import { useLayoutEffect, useState } from "react";
 import SvgOutline from "./svgOutline";
 import SwitchModeBtn from "./SwitchModeBtn";
 import { ModeName } from "@/src/types/modes";
+import TimeLeftIndicator from "./TimeLeftIndicator";
 
 function useGetModeIsSelected() {
     const currentMode = useAtomValue(currModeSelectedAtom);
@@ -32,21 +33,24 @@ export default function HeaderSwitchModes() {
     const getIsSelected = useGetModeIsSelected();
     const svgData = useGetRandomSvg();
     return (
-        <header className="w-full flex gap-10 items-center">
-            {MODE_NAMES.map((modeName) => (
-                <SvgOutline
-                    key={modeName}
-                    modeName={modeName}
-                    svgData={svgData}
-                    isOutlineVisible={getIsSelected(modeName)}
-                >
-                    <SwitchModeBtn
+        <header className="w-full flex justify-between items-center mb-30 max-[890px]:flex-col max-[890px]:items-start gap-8  ">
+            <section className="flex gap-10 items-center">
+                {MODE_NAMES.map((modeName) => (
+                    <SvgOutline
+                        key={modeName}
                         modeName={modeName}
-                        isSelected={getIsSelected(modeName)}
-                    />
-                </SvgOutline>
-            ))}
-            <h1 className="ml-8 underline text-5xl ">Shit</h1>
+                        svgData={svgData}
+                        isOutlineVisible={getIsSelected(modeName)}
+                    >
+                        <SwitchModeBtn
+                            modeName={modeName}
+                            isSelected={getIsSelected(modeName)}
+                        />
+                    </SvgOutline>
+                ))}
+                <h1 className="ml-8 underline text-5xl ">Shit</h1>
+            </section>
+            <TimeLeftIndicator />
         </header>
     );
 }

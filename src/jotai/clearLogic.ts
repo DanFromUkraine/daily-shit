@@ -1,3 +1,4 @@
+import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
 export const lastSessionStartDataLSAtom = atomWithStorage<number>(
@@ -8,3 +9,5 @@ export const lastSessionStartDataLSAtom = atomWithStorage<number>(
         getOnInit: true,
     },
 );
+
+export const timeLeftMsAtom = atom(0);

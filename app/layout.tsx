@@ -12,7 +12,7 @@ export default function layout({ children }: { children: ReactNode }) {
     return (
         <Provider>
             <html lang="en" className={caveat.className}>
-                <body className="p-20 paperBg">{children}</body>
+                <body className="p-20 max-sm:p-11 paperBg">{children}</body>
             </html>
         </Provider>
     );

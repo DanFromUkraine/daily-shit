@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
+body {
+    min-height: 100vh;
+}
+
+html {
+    scroll-padding-bottom: 30vh;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 80%;
+    }
+}
+
 .paperBg {
     background-image: url("/paperTexture.webp");
     background-repeat: repeat;
-    background-size: contain;
-    background-position: center;
+    background-size: 100vw 1281px;
 }
