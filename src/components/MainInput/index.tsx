@@ -37,7 +37,7 @@ export default function MainInput() {
             value={inputText}
             onChange={onInputChange}
             data-testid="main-input"
-            className="w-full outline-none text-2xl resize-none mb-3"
+            className="w-full outline-none text-2xl resize-none mb-3 overflow-hidden"
             placeholder="Your temporary story starts here..."
             ref={textAreaRef}
         ></textarea>

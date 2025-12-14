@@ -48,7 +48,9 @@ export default function HeaderSwitchModes() {
                         />
                     </SvgOutline>
                 ))}
-                <h1 className="ml-8 underline text-5xl ">Shit</h1>
+                <h1 className="ml-8 max-[400px]:ml-3 max-[380px]:ml-0 underline text-5xl ">
+                    Shit
+                </h1>
             </section>
             <TimeLeftIndicator />
         </header>
