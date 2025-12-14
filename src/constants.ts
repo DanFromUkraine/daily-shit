@@ -1,3 +1,4 @@
+import { WritableAtom } from "jotai";
 import BoxSvg from "./components/svgs/box";
 import Regular1Svg from "./components/svgs/regular1";
 import Regular2Svg from "./components/svgs/regular2";
@@ -5,12 +6,23 @@ import Regular3Svg from "./components/svgs/regular3";
 import ShockSvg from "./components/svgs/shock";
 import SmileSvg from "./components/svgs/smile";
 import UpsetSvg from "./components/svgs/upset";
+import {
+    dailyTextAtom,
+    monthlyTextAtom,
+    weeklyTextAtom,
+} from "./jotai/textAtoms";
+import { SetStateActionWithReset } from "./types/global";
 import { ModeName } from "./types/modes";
 import { SvgOutlineParameters } from "./types/svgs";
+import {
+    lastSessionStartDateLSAtom__Daily,
+    lastSessionStartDateLSAtom__Monthly,
+    lastSessionStartDateLSAtom__Weekly,
+} from "./jotai/clearLogic";
 
-const DAY_MS = 1_000 * 60 * 60 * 24;
-const WEEK_MS = DAY_MS * 7;
-const MONTH_MS = DAY_MS * 30;
+export const DAY_MS = 1_000 * 60 * 60 * 24;
+export const WEEK_MS = DAY_MS * 7;
+export const MONTH_MS = DAY_MS * 30;
 
 export const MODE_AND_TIME_TABLE = {
     Daily: 0,
@@ -85,3 +97,21 @@ export const SVG_OUTLINES = [
         monthlyClassName: "left-5.5 bottom-4 scale-370",
     },
 ] as const satisfies SvgOutlineParameters[];
+
+export const NOTES_DEPENDENCIES: Record<
+    ModeName,
+    WritableAtom<string, [SetStateActionWithReset<string>], void>
+> = {
+    Daily: dailyTextAtom,
+    Weekly: weeklyTextAtom,
+    Monthly: monthlyTextAtom,
+};
+
+export const SESS_START_DATE_DEPENDECIES: Record<
+    ModeName,
+    WritableAtom<number, [SetStateActionWithReset<number>], void>
+> = {
+    Daily: lastSessionStartDateLSAtom__Daily,
+    Weekly: lastSessionStartDateLSAtom__Weekly,
+    Monthly: lastSessionStartDateLSAtom__Monthly,
+};

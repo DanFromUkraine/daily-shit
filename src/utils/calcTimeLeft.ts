@@ -9,12 +9,6 @@ export default function calcTimeLeft({
 }) {
     const hoursTill2Am = 26 - new Date(sessionStartTime).getHours();
 
-    console.log({
-        hoursTill2Am,
-        startTimeSessionMin: new Date(sessionStartTime).getMinutes(),
-        startTimeHours: new Date(sessionStartTime).getHours(),
-    });
-
     return (
         sessionStartTime +
         roundedTimeToWait +

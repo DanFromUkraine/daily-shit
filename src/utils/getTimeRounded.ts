@@ -1,19 +1,4 @@
-type TimeUnit =
-    | "weeks"
-    | "week"
-    | "days"
-    | "day"
-    | "hours"
-    | "hour"
-    | "minutes"
-    | "minute"
-    | "seconds"
-    | "second";
-
-type RoundedTime = {
-    timeUnit: TimeUnit;
-    amount: number;
-};
+import { RoundedTime } from "../types/roundTime";
 
 export default function getTimeRounded(
     timeMs: number,
