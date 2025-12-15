@@ -107,7 +107,7 @@ export const NOTES_DEPENDENCIES: Record<
     Monthly: monthlyTextAtom,
 };
 
-export const SESS_START_DATE_DEPENDECIES: Record<
+export const SESS_START_DATE_DEPENDENCIES: Record<
     ModeName,
     WritableAtom<number, [SetStateActionWithReset<number>], void>
 > = {

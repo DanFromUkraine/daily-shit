@@ -12,7 +12,7 @@ export function useAutosizeTextArea({
         if (textAreaRef.current) {
             textAreaRef.current.style.height = "0px";
             const scrollHeight = textAreaRef.current.scrollHeight;
-            console.log({ scrollHeight });
+            // console.log({ scrollHeight });
             textAreaRef.current.style.height = scrollHeight + "px";
         }
     }, [textAreaRef, _value]);
