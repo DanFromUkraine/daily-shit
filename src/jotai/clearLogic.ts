@@ -1,4 +1,3 @@
-import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
 export const lastSessionStartDateLSAtom__Daily = atomWithStorage<number>(
@@ -19,4 +18,3 @@ export const lastSessionStartDateLSAtom__Monthly = atomWithStorage<number>(
     undefined,
     { getOnInit: true },
 );
-
