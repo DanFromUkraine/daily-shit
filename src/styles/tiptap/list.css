@@ -10,6 +10,17 @@
         }
     }
 
+    ol {
+        list-style: numeric;
+        li::marker {
+            font-size: 1.5rem;
+        }
+    }
+
+    ul:not([data-type="taskList"]) {
+        list-style: disc;
+    }
+
     ul[data-type="taskList"] {
         list-style: none;
         margin-left: 0;

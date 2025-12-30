@@ -1,20 +1,20 @@
 "use client";
 
-import BottomBanner from "@/src/components/simpleUI/BottomBanner";
-import HeaderSwitchModes from "@/src/components/HeaderSwitchModes";
-import MainInput from "@/src/components/MainInput";
+import Footer from "@/src/components/Footer";
+import HeaderSwitchModes from "@/src/components/Header";
+import MainInput from "@/src/components/Editor";
 import useClearTextOnTimer from "@/src/utils/useClearText";
-import Hr from "@/src/components/simpleUI/Hr";
+import { Suspense } from "react";
 
 export default function MainPage() {
-    useClearTextOnTimer();
-    // useInitDateInLS();
-    return (
-        <main className="flex flex-col">
-            <HeaderSwitchModes />
-            <MainInput />
-            <Hr />
-            <BottomBanner />
-        </main>
-    );
+  useClearTextOnTimer();
+  return (
+    <main className="flex flex-col">
+      <Suspense fallback=<div>loading...</div>>
+        <HeaderSwitchModes />
+      </Suspense>
+      <MainInput />
+      <Footer />
+    </main>
+  );
 }

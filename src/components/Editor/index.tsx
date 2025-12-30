@@ -16,6 +16,7 @@ import { Heading } from "@tiptap/extension-heading";
 import { Strike } from "@tiptap/extension-strike";
 import { HardBreak } from "@tiptap/extension-hard-break";
 import { HorizontalRule } from "@tiptap/extension-horizontal-rule";
+import { editorAtom } from "@/src/jotai/editor";
 
 export default function MainInput() {
   // const currentMode = useAtomValue(currModeSelectedAtom);
