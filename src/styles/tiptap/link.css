@@ -1,0 +1,10 @@
+.tiptap {
+    a {
+        color: var(--purple);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--purple-contrast);
+        }
+    }
+}

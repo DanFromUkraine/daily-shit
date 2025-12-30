@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "./tiptap/highlight.css";
+@import "./tiptap/horizontal-rule.css";
+@import "./tiptap/link.css";
+@import "./tiptap/list.css";
+@import "./tiptap/text.css";
 
 body {
     min-height: 100vh;
