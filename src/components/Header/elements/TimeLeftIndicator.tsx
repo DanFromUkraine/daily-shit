@@ -1,6 +1,6 @@
 "use client";
 
-import { currModeSelectedAtom } from "@/src/jotai/currentMode";
+import { getCurrentModeAtom } from "@/src/jotai/currentMode";
 import { timeLeftIndicatorAtom } from "@/src/jotai/timeLeft";
 import getTimeRounded from "@/src/utils/getTimeRounded";
 import { useAtomValue } from "jotai";
@@ -8,9 +8,9 @@ import { useAtomValue } from "jotai";
 export default function TimeLeftIndicator() {
   const timeLeftMs = useAtomValue(timeLeftIndicatorAtom);
   const roundedTime = getTimeRounded(timeLeftMs);
-  const currMode = useAtomValue(currModeSelectedAtom);
+  const currMode = useAtomValue(getCurrentModeAtom);
 
-  if (currMode === "Daily") {
+  if (currMode === "daily") {
     console.log({ timeLeftMs, roundedTime, currMode });
   }
 

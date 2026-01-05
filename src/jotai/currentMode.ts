@@ -1,8 +1,11 @@
-import { atomWithStorage } from "jotai/utils";
-import { MODE_NAMES } from "../constants";
-import { ModeName } from "../types/modes";
+import getIdbWrappedAtom from "../utils/getIdbConnectedAtom";
 
-export const currModeSelectedAtom = atomWithStorage<ModeName>(
-    "mode-selected",
-    MODE_NAMES[0],
-);
+export const {
+  getAtom: getCurrentModeAtom,
+  setAtom: setCurrentModeAtom,
+  initActionAtom: initCurrentModeAtom,
+} = getIdbWrappedAtom({
+  startValue: "daily",
+  key: "currentMode",
+  storeName: "modes",
+});

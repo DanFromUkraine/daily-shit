@@ -3,31 +3,13 @@
 import { MODE_NAMES } from "@/src/constants";
 import SvgOutline from "./elements/SvgOutline";
 import SwitchModeBtn from "./elements/SwitchModeBtn";
-import TimeLeftIndicator from "./elements/TimeLeftIndicator";
 import { useGetModeIsSelected, useGetRandomSvg } from "./header.hooks";
-import { useIdbPromise } from "@/src/idb/IdbProvider";
-import { use, useEffect, useState } from "react";
+import Regular1Svg from "../svgs/regular1";
 
 export default function HeaderSwitchModes() {
   const getIsSelected = useGetModeIsSelected();
-  const svgData = useGetRandomSvg();
 
-  // const examplePromise = useIdbPromise();
-
-  // const [count, setCount] = useState(0);
-
-  // useEffect(() => {
-  //   const expectedData = use(examplePromise);
-  //   console.log(expectedData);
-
-  //   const interval = setInterval(() => {
-  //     setCount((prev) => prev + 1);
-  //   }, 1000);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
+  console.debug("header render");
 
   return (
     <header className="w-full flex justify-between items-center mb-30 max-[890px]:flex-col max-[890px]:items-start gap-8">
@@ -37,7 +19,13 @@ export default function HeaderSwitchModes() {
           <SvgOutline
             key={modeName}
             modeName={modeName}
-            svgData={svgData}
+            svgData={{
+              Svg: Regular1Svg,
+              svgClassName: "left-1",
+              dailyClassName: "scale-190",
+              weeklyClassName: "scale-220",
+              monthlyClassName: "scale-240",
+            }}
             isOutlineVisible={getIsSelected(modeName)}
           >
             <SwitchModeBtn
@@ -50,7 +38,7 @@ export default function HeaderSwitchModes() {
           Shit
         </h1>
       </section>
-      <TimeLeftIndicator />
+      {/*<TimeLeftIndicator />*/}
     </header>
   );
 }

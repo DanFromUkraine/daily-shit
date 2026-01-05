@@ -1,1 +1,1 @@
-export type ModeName = "Daily" | "Weekly" | "Monthly";
+export type ModeName = "daily" | "weekly" | "monthly";

@@ -1,15 +1,17 @@
 "use client";
 
-import { currModeSelectedAtom } from "@/src/jotai/currentMode";
 import { ModeName } from "@/src/types/modes";
 import pickRandomFromList from "@/src/utils/pickRandomFromList";
 import { useAtomValue } from "jotai";
 import { useLayoutEffect, useState } from "react";
 import { SVG_OUTLINES } from "./header.constants";
 import { SvgOutlineParameters } from "./header";
+import { getCurrentModeAtom } from "@/src/jotai/currentMode";
 
 export function useGetModeIsSelected() {
-  const currentMode = useAtomValue(currModeSelectedAtom);
+  const currentMode = useAtomValue(getCurrentModeAtom);
+
+  console.debug(currentMode);
 
   return (mode: ModeName) => mode === currentMode;
 }

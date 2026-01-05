@@ -1,13 +1,13 @@
 "use client";
 
 import clsx from "clsx";
-import gsap from "gsap";
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode } from "react";
 import { SvgOutlineParameters } from "../header";
+import { ModeName } from "@/src/types/modes";
 
 type SvgOutlineProps = Readonly<{
   children: ReactNode;
-  modeName: string;
+  modeName: ModeName;
   svgData: SvgOutlineParameters | undefined;
   isOutlineVisible: boolean;
 }>;
@@ -18,31 +18,12 @@ export default function SvgOutline({
   svgData,
   modeName,
 }: SvgOutlineProps) {
-  const svgRef = useRef<SVGSVGElement>(null);
-
-  useEffect(() => {
-    if (!svgRef.current) return;
-    const paths = svgRef.current.children;
-    gsap.fromTo(
-      paths,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.2,
-      },
-    );
-  }, [isOutlineVisible]);
-
   return (
     <div className="flex relative">
       {svgData !== undefined && (
         <svgData.Svg
-          ref={svgRef}
           className={clsx(
-            "hidden absolute pointer-events-none w-full h-full",
+            "hidden absolute pointer-events-none w-full h-full capitalize",
             svgData.svgClassName,
             getModeSpecificClassname({ modeName, svgData }),
             {
@@ -61,10 +42,10 @@ function getModeSpecificClassname({
   modeName,
   svgData,
 }: Readonly<{
-  modeName: string;
+  modeName: ModeName;
   svgData: SvgOutlineParameters;
 }>) {
-  if (modeName === "Daily") return svgData.dailyClassName;
-  else if (modeName === "Weekly") return svgData.weeklyClassName;
-  else if (modeName === "Monthly") return svgData.monthlyClassName;
+  if (modeName === "daily") return svgData.dailyClassName;
+  else if (modeName === "weekly") return svgData.weeklyClassName;
+  else if (modeName === "monthly") return svgData.monthlyClassName;
 }

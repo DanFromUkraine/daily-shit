@@ -1,22 +1,16 @@
 "use client";
 
-import { NOTES_DEPENDENCIES } from "@/src/constants";
-import { currModeSelectedAtom } from "@/src/jotai/currentMode";
-import { useAutosizeTextArea } from "@/src/utils/useAutosize";
-import { EditorContent, useEditor } from "@tiptap/react";
-import { useAtom, useAtomValue } from "jotai";
-import { ChangeEventHandler, useMemo, useRef } from "react";
-import { Document } from "@tiptap/extension-document";
-import { Text } from "@tiptap/extension-text";
-import { Paragraph } from "@tiptap/extension-paragraph";
-import { ListKit } from "@tiptap/extension-list";
 import { Bold } from "@tiptap/extension-bold";
-import { Underline } from "@tiptap/extension-underline";
-import { Heading } from "@tiptap/extension-heading";
-import { Strike } from "@tiptap/extension-strike";
+import { Document } from "@tiptap/extension-document";
 import { HardBreak } from "@tiptap/extension-hard-break";
+import { Heading } from "@tiptap/extension-heading";
 import { HorizontalRule } from "@tiptap/extension-horizontal-rule";
-import { editorAtom } from "@/src/jotai/editor";
+import { ListKit } from "@tiptap/extension-list";
+import { Paragraph } from "@tiptap/extension-paragraph";
+import { Strike } from "@tiptap/extension-strike";
+import { Text } from "@tiptap/extension-text";
+import { Underline } from "@tiptap/extension-underline";
+import { EditorContent, useEditor } from "@tiptap/react";
 
 export default function MainInput() {
   // const currentMode = useAtomValue(currModeSelectedAtom);

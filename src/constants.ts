@@ -17,27 +17,29 @@ export const WEEK_MS = DAY_MS * 7;
 export const MONTH_MS = DAY_MS * 30;
 
 export const MODE_AND_TIME_TABLE = {
-  Daily: 0,
-  Weekly: WEEK_MS - DAY_MS,
-  Monthly: MONTH_MS - DAY_MS,
+  daily: 0,
+  weekly: WEEK_MS - DAY_MS,
+  monthly: MONTH_MS - DAY_MS,
 } satisfies Record<ModeName, number>;
 
-export const MODE_NAMES: ModeName[] = ["Daily", "Weekly", "Monthly"];
+export const MODE_NAMES: ModeName[] = ["daily", "weekly", "monthly"];
 
 export const NOTES_DEPENDENCIES: Record<
   ModeName,
   WritableAtom<string, [SetStateActionWithReset<string>], void>
 > = {
-  Daily: dailyTextAtom,
-  Weekly: weeklyTextAtom,
-  Monthly: monthlyTextAtom,
+  daily: dailyTextAtom,
+  weekly: weeklyTextAtom,
+  monthly: monthlyTextAtom,
 };
 
 export const SESS_START_DATE_DEPENDENCIES: Record<
   ModeName,
   WritableAtom<number, [SetStateActionWithReset<number>], void>
 > = {
-  Daily: lastSessionStartDateLSAtom__Daily,
-  Weekly: lastSessionStartDateLSAtom__Weekly,
-  Monthly: lastSessionStartDateLSAtom__Monthly,
+  daily: lastSessionStartDateLSAtom__Daily,
+  weekly: lastSessionStartDateLSAtom__Weekly,
+  monthly: lastSessionStartDateLSAtom__Monthly,
 };
+
+
