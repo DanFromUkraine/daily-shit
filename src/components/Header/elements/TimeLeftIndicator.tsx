@@ -1,22 +1,18 @@
 "use client";
 
-import { getCurrentModeAtom } from "@/src/jotai/currentMode";
-import { timeLeftIndicatorAtom } from "@/src/jotai/timeLeft";
 import getTimeRounded from "@/src/utils/getTimeRounded";
 import { useAtomValue } from "jotai";
+import { timeLeftIndicatorAtom } from "../header.store";
 
 export default function TimeLeftIndicator() {
   const timeLeftMs = useAtomValue(timeLeftIndicatorAtom);
-  const roundedTime = getTimeRounded(timeLeftMs);
-  const currMode = useAtomValue(getCurrentModeAtom);
 
-  if (currMode === "daily") {
-    console.log({ timeLeftMs, roundedTime, currMode });
-  }
+  if (!timeLeftMs) return <h2 className="text-4xl">loading...</h2>;
+  const roundedTime = getTimeRounded(timeLeftMs);
 
   return (
-    roundedTime !== undefined && (
-      <h2 className="text-4xl">
+    roundedTime && (
+      <h2 className="text-4xl shrink-0">
         {roundedTime.amount} {roundedTime.timeUnit} left
       </h2>
     )

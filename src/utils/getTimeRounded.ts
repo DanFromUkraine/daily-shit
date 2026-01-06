@@ -3,11 +3,11 @@ import { RoundedTime } from "../types/roundTime";
 export default function getTimeRounded(
   timeMs: number,
 ): RoundedTime | undefined {
-  const seconds = Math.floor(timeMs / 1000),
-    minutes = Math.floor(seconds / 60),
-    hours = Math.floor(minutes / 60),
-    days = Math.floor(hours / 24),
-    weeks = Math.floor(days / 7);
+  const seconds = round(timeMs / 1000),
+    minutes = round(seconds / 60),
+    hours = round(minutes / 60),
+    days = round(hours / 24),
+    weeks = round(days / 7);
 
   if (weeks > 1) return { timeUnit: "weeks", amount: weeks };
   else if (weeks === 1) return { timeUnit: "week", amount: 1 };
@@ -19,4 +19,10 @@ export default function getTimeRounded(
   else if (minutes === 1) return { timeUnit: "minute", amount: 1 };
   else if (seconds > 1) return { timeUnit: "seconds", amount: seconds };
   else if (seconds === 1) return { timeUnit: "second", amount: 1 };
+}
+
+function round(target: number) {
+  const RATE = 10;
+
+  return Math.round(target * 10) / 10;
 }

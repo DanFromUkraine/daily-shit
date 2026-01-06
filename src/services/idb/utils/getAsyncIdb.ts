@@ -1,6 +1,5 @@
-import { openDB, IDBPObjectStore } from "idb";
-import { IDB, IdbSchema } from "../idb";
-
+import { openDB } from "idb";
+import { IDB } from "../types";
 export default async function getAsyncIdb() {
   return openDB("application", undefined, { upgrade });
 }

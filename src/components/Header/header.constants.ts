@@ -1,11 +1,18 @@
+import {
+    timeLeftForDailyNoteAtom,
+    timeLeftForMonthlyNoteAtom,
+    timeLeftForWeeklyNoteAtom,
+} from "@/src/services/clear-text/mainServiceAtom";
+import { ModeName } from "@/src/types/modes";
+import BoxSvg from "../svgs/box";
 import Regular1Svg from "../svgs/regular1";
 import Regular2Svg from "../svgs/regular2";
+import Regular3Svg from "../svgs/regular3";
 import ShockSvg from "../svgs/shock";
 import SmileSvg from "../svgs/smile";
-import BoxSvg from "../svgs/box";
-import Regular3Svg from "../svgs/regular3";
 import UpsetSvg from "../svgs/upset";
 import { SvgOutlineParameters } from "./header";
+
 
 export const SVG_OUTLINES = [
   {
@@ -58,3 +65,11 @@ export const SVG_OUTLINES = [
     monthlyClassName: "left-5.5 bottom-4 scale-370",
   },
 ] as const satisfies SvgOutlineParameters[];
+
+export const MODE_NAMES: ModeName[] = ["daily", "weekly", "monthly"];
+
+export const TIME_LEFT_ATOMS = {
+  daily: timeLeftForDailyNoteAtom,
+  weekly: timeLeftForWeeklyNoteAtom,
+  monthly: timeLeftForMonthlyNoteAtom,
+} as const;

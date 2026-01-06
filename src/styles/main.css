@@ -4,10 +4,12 @@
 @import "./tiptap/link.css";
 @import "./tiptap/list.css";
 @import "./tiptap/text.css";
+@import "./_variables.css";
 
 body {
-    min-height: 100vh;
-    background-color: #e5dfda;
+    background-image: url("/paperTexture.webp");
+    background-size: 100vw 1281px;
+    @apply py-11 px-6 phone:px-11 sm:p-20  bg-repeat min-h-screen  bg-paper-like;
 }
 
 html {
@@ -18,10 +20,4 @@ html {
     html {
         font-size: 80%;
     }
-}
-
-.paperBg {
-    background-image: url("/paperTexture.webp");
-    background-repeat: repeat;
-    background-size: 100vw 1281px;
 }

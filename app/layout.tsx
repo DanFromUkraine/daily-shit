@@ -3,7 +3,6 @@ import { Provider } from "jotai";
 import { Caveat } from "next/font/google";
 import "@/src/styles/main.css";
 import { Metadata } from "next";
-import IdbInitializer from "@/src/idb/Initializer";
 
 const caveat = Caveat({
   subsets: ["latin"],
@@ -19,11 +18,9 @@ export const metadata: Metadata = {
 export default function layout({ children }: { children: ReactNode }) {
   return (
     <Provider>
-      <IdbInitializer>
-        <html lang="en" className={caveat.className}>
-          <body className="p-20 max-sm:p-11 paperBg">{children}</body>
-        </html>
-      </IdbInitializer>
+      <html lang="en" className={caveat.className}>
+        <body>{children}</body>
+      </html>
     </Provider>
   );
 }

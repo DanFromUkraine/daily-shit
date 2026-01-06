@@ -10,24 +10,28 @@ import { Paragraph } from "@tiptap/extension-paragraph";
 import { Strike } from "@tiptap/extension-strike";
 import { Text } from "@tiptap/extension-text";
 import { Underline } from "@tiptap/extension-underline";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { Highlight } from "@tiptap/extension-highlight";
+import { EditorContent, JSONContent, useEditor } from "@tiptap/react";
+import { useAtomValue, useSetAtom, WritableAtom } from "jotai";
+import { getCurrentModeAtom } from "../Header/header.store";
+import { NOTES } from "./editor.constants";
+import { useEffect, useRef, useState } from "react";
+import { ModeName } from "@/src/types/modes";
 
 export default function MainInput() {
-  // const currentMode = useAtomValue(currModeSelectedAtom);
-  // const stableTextAtom = useMemo(
-  //   () => NOTES_DEPENDENCIES[currentMode],
-  //   [currentMode],
-  // );
-  // const [inputText, setInputText] = useAtom(stableTextAtom);
-  // const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  // const onInputChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-  //   setInputText(e.target.value);
-  // };
+  const currMode = useAtomValue(getCurrentModeAtom) || "stub_value";
 
-  // useAutosizeTextArea({ textAreaRef, _value: inputText });
+  const { getContentAtom, isInitReadyAtom, setContentWithDebounceAtom } =
+    NOTES[currMode];
+
+  const content = useAtomValue(getContentAtom);
+  const setContent = useSetAtom(setContentWithDebounceAtom);
+  const isInitReady = useAtomValue(isInitReadyAtom);
+  const [editable, setEditable] = useState(false);
 
   const editor = useEditor({
     immediatelyRender: false,
+    editable,
     extensions: [
       Document,
       Text,
@@ -39,27 +43,28 @@ export default function MainInput() {
       Strike,
       HardBreak,
       HorizontalRule,
+      Highlight,
     ],
     editorProps: {
       attributes: {
         class: "focus-visible:outline-none!",
       },
     },
+    onUpdate({ editor }) {
+      if (editable) {
+        setContent(editor.getJSON());
+      }
+    },
   });
+
+  useEffect(() => {
+    if (!isInitReady || currMode === "stub_value") return;
+
+    editor?.commands.setContent(content);
+
+    editor?.setEditable(true);
+    setEditable(true);
+  }, [currMode, isInitReady]);
 
   return <EditorContent editor={editor} />;
 }
-
-/*
-
-<textarea
-  title="main-input"
-  name="main-input"
-  value={inputText}
-  onChange={onInputChange}
-  data-testid="main-input"
-  className="w-full outline-none text-2xl resize-none mb-3 overflow-hidden"
-  placeholder="Your temporary story starts here..."
-  ref={textAreaRef}
-></textarea>
-*/

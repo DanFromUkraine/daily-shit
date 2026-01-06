@@ -1,33 +1,33 @@
 "use client";
 
+import { ModeName } from "@/src/types/modes";
 import clsx from "clsx";
 import { ReactNode } from "react";
 import { SvgOutlineParameters } from "../header";
-import { ModeName } from "@/src/types/modes";
 
 type SvgOutlineProps = Readonly<{
   children: ReactNode;
   modeName: ModeName;
-  svgData: SvgOutlineParameters | undefined;
   isOutlineVisible: boolean;
+  svgData: SvgOutlineParameters | undefined;
 }>;
 
 export default function SvgOutline({
   children,
   isOutlineVisible,
-  svgData,
   modeName,
+  svgData,
 }: SvgOutlineProps) {
   return (
     <div className="flex relative">
       {svgData !== undefined && (
         <svgData.Svg
           className={clsx(
-            "hidden absolute pointer-events-none w-full h-full capitalize",
+            "invisible absolute pointer-events-none w-full h-full capitalize",
             svgData.svgClassName,
             getModeSpecificClassname({ modeName, svgData }),
             {
-              "flex!": isOutlineVisible,
+              "visible max-phone:invisible": isOutlineVisible,
             },
           )}
         />

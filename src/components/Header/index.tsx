@@ -1,44 +1,36 @@
 "use client";
 
-import { MODE_NAMES } from "@/src/constants";
+import { useAtomValue } from "jotai";
 import SvgOutline from "./elements/SvgOutline";
 import SwitchModeBtn from "./elements/SwitchModeBtn";
-import { useGetModeIsSelected, useGetRandomSvg } from "./header.hooks";
-import Regular1Svg from "../svgs/regular1";
+import TimeLeftIndicator from "./elements/TimeLeftIndicator";
+import { useGetRandomSvg } from "./header.hooks";
+import { MODE_NAMES } from "./header.constants";
+import { getCurrentModeAtom } from "./header.store";
 
 export default function HeaderSwitchModes() {
-  const getIsSelected = useGetModeIsSelected();
-
-  console.debug("header render");
+  const svgData = useGetRandomSvg();
+  const currentMode = useAtomValue(getCurrentModeAtom);
 
   return (
-    <header className="w-full flex justify-between items-center mb-30 max-[890px]:flex-col max-[890px]:items-start gap-8">
-      {/* #REFACTOR */}
-      <section className="flex gap-10 items-center">
-        {MODE_NAMES.map((modeName) => (
+    <header className="w-full flex justify-between items-start sm:items-center mb-30 max-sm:flex-col max-sm:gap-8">
+      <section className="flex gap-5 phone:gap-10 items-center w-full">
+        {MODE_NAMES.map((mode) => (
           <SvgOutline
-            key={modeName}
-            modeName={modeName}
-            svgData={{
-              Svg: Regular1Svg,
-              svgClassName: "left-1",
-              dailyClassName: "scale-190",
-              weeklyClassName: "scale-220",
-              monthlyClassName: "scale-240",
-            }}
-            isOutlineVisible={getIsSelected(modeName)}
+            key={mode}
+            modeName={mode}
+            isOutlineVisible={currentMode === mode}
+            svgData={svgData}
           >
             <SwitchModeBtn
-              modeName={modeName}
-              isSelected={getIsSelected(modeName)}
+              modeName={mode}
+              isSelected={currentMode === mode}
             />
           </SvgOutline>
         ))}
-        <h1 className="ml-8 max-[400px]:ml-3 max-[380px]:ml-0 underline text-5xl ">
-          Shit
-        </h1>
+        <h1 className="sm:ml-8 max-md:ml-0! underline text-5xl ">Shit</h1>
       </section>
-      {/*<TimeLeftIndicator />*/}
+      <TimeLeftIndicator />
     </header>
   );
 }

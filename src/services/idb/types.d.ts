@@ -1,5 +1,5 @@
 import { DBSchema, IDBPDatabase } from "idb";
-import { createIdbApi } from "./actions";
+import { JSONContent } from "@tiptap/react";
 
 export type TextKey = "daily_note" | "weekly_note" | "monthly_note";
 export type SessionDateKey =
@@ -20,7 +20,7 @@ export type AuthKeyVariant = "public" | "local";
 export interface DatabaseStructure {
   text_data: {
     key: TextKey;
-    value: string;
+    value: JSONContent;
   };
   session_date: {
     key: SessionDateKey;
@@ -44,8 +44,6 @@ export interface DatabaseStructure {
 export type IdbSchema = DatabaseStructure & DBSchema;
 
 export type IDB = IDBPDatabase<IdbSchema>;
-
-export type IdbApi = ReturnType<typeof createIdbApi>;
 
 type IdbBundle = {
   idb: IDB;
