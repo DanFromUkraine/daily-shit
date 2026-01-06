@@ -1,20 +1,17 @@
 "use client";
 
-import BottomBanner from "@/src/components/simpleUI/BottomBanner";
-import HeaderSwitchModes from "@/src/components/HeaderSwitchModes";
-import MainInput from "@/src/components/MainInput";
-import useClearTextOnTimer from "@/src/utils/useClearText";
-import Hr from "@/src/components/simpleUI/Hr";
+import MainInput from "@/src/components/Editor";
+import Footer from "@/src/components/Footer";
+import Header from "@/src/components/Header";
+import useServices from "@/src/services";
 
 export default function MainPage() {
-    useClearTextOnTimer();
-    // useInitDateInLS();
-    return (
-        <main className="flex flex-col">
-            <HeaderSwitchModes />
-            <MainInput />
-            <Hr />
-            <BottomBanner />
-        </main>
-    );
+  useServices();
+  return (
+    <main className="flex flex-col">
+      <Header />
+      <MainInput />
+      <Footer />
+    </main>
+  );
 }

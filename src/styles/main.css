@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "./tiptap/highlight.css";
+@import "./tiptap/horizontal-rule.css";
+@import "./tiptap/link.css";
+@import "./tiptap/list.css";
+@import "./tiptap/text.css";
+@import "./_variables.css";
+
+body {
+    background-image: url("/paperTexture.webp");
+    background-size: 100vw 1281px;
+    @apply py-11 px-6 phone:px-11 sm:p-20  bg-repeat min-h-screen  bg-paper-like;
+}
+
+html {
+    scroll-padding-bottom: 30vh;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 80%;
+    }
+}
