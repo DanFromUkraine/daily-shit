@@ -42,3 +42,8 @@ export const {
   storeName: "text_data",
   key: "monthly_note",
 });
+
+export const editorAtom = atom<{ editor: Editor | null; timestamp: number }>({
+  editor: null,
+  timestamp: 0,
+});

@@ -89,8 +89,6 @@ export const tickAtom = atom(null, (get, set) => {
     timeLeftForWeekly = get(timeLeftForWeeklyNoteAtom),
     timeLeftForMonthly = get(timeLeftForMonthlyNoteAtom);
 
-  console.debug({ timeLeftForDaily, timeLeftForWeekly, timeLeftForMonthly });
-
   if (timeLeftForDaily < 0) set(resetDailyNoteAtom);
   if (timeLeftForWeekly < 0) set(resetWeeklyNoteAtom);
   if (timeLeftForMonthly < 0) set(resetMonthlyNoteAtom);
